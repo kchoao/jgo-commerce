@@ -1,6 +1,7 @@
 import { Fetcher } from '@vercel/commerce/utils/types'
 import { API_URL } from './const'
 import { getToken, handleFetchResponse } from './utils'
+import { SALEOR_TOKEN } from './const'
 
 const fetcher: Fetcher = async ({
   url = API_URL,
@@ -15,7 +16,9 @@ const fetcher: Fetcher = async ({
       method,
       body: JSON.stringify({ query, variables }),
       headers: {
-        Authorization: `JWT ${token}`,
+        ...(token && {
+          'Authorization-Bearer': token,
+        }),
         'Content-Type': 'application/json',
       },
     })

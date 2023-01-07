@@ -2,7 +2,7 @@ export const getAllProductsPathsQuery = /* GraphQL */ `
   query getAllProductPaths(
     $first: Int = 50
     $cursor: String
-    $channel: String = "default-channel"
+    $channel: String
   ) {
     products(first: $first, after: $cursor, channel: $channel) {
       pageInfo {

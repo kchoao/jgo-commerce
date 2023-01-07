@@ -32,6 +32,7 @@ const CartSidebarView: FC = () => {
   const error = null
   const success = null
 
+  console.log(data)
   return (
     <SidebarLayout
       className={cn({

@@ -5,7 +5,7 @@ export const ProductMany = /* GraphQL */ `
     $first: Int = 50
     $filter: ProductFilterInput
     $sortBy: ProductOrder
-    $channel: String = "default-channel"
+    $channel: String
   ) {
     products(
       first: $first

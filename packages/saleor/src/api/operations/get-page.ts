@@ -21,16 +21,16 @@ export default function getPageOperation({
     config?: Partial<SaleorConfig>
     preview?: boolean
   }): Promise<GetPageResult> {
-    const { fetch, locale = 'en-US' } = commerce.getConfig(config)
+    const { fetch, locale } = commerce.getConfig(config)
 
     const { data } = await fetch(
       query,
-      { variables },
-      {
-        ...(locale && {
-          'Accept-Language': locale,
-        }),
-      }
+      { variables }
+      // {
+      //   ...(locale && {
+      //     'Accept-Language': locale,
+      //   }),
+      // }
     )
 
     return {

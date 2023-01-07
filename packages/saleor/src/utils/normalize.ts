@@ -1,4 +1,5 @@
 import { Product } from '@vercel/commerce/types/product'
+import { DEFAULT_CURRENCY } from '../const'
 
 import {
   Product as SaleorProduct,
@@ -16,7 +17,7 @@ const placeholderImg = '/product-img-placeholder.svg'
 const money = ({ amount, currency }: Money) => {
   return {
     value: +amount,
-    currencyCode: currency || 'USD',
+    currencyCode: currency || DEFAULT_CURRENCY,
   }
 }
 
@@ -97,7 +98,7 @@ export function normalizeProduct(productNode: SaleorProduct): Product {
     price: (pricing?.priceRange?.start?.net &&
       money(pricing.priceRange.start.net)) || {
       value: 0,
-      currencyCode: 'USD',
+      currencyCode: DEFAULT_CURRENCY,
     },
     // TODO: Check nextjs-commerce bug if no images are added for a product
     images: media?.length ? media : [{ url: placeholderImg }],

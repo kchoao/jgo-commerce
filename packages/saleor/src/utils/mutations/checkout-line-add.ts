@@ -1,8 +1,8 @@
 import * as fragment from '../fragments'
 
 export const CheckoutLineAdd = /* GraphQL */ `
-  mutation CheckoutLineAdd($checkoutId: ID!, $lineItems: [CheckoutLineInput!]!) {
-    checkoutLinesAdd(checkoutId: $checkoutId, lines: $lineItems) {
+  mutation CheckoutLineAdd($id: ID!, $lines: [CheckoutLineInput!]!) {
+    checkoutLinesAdd(id: $id, lines: $lines) {
       errors {
         code
         field

@@ -1,5 +1,5 @@
 export const ProductOneBySlug = /* GraphQL */ `
-  query ProductOneBySlug($slug: String!, $channel: String = "default-channel") {
+  query ProductOneBySlug($slug: String!, $channel: String) {
     product(slug: $slug, channel: $channel) {
       id
       slug

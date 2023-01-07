@@ -15,7 +15,7 @@ const fetchGraphqlApi: GraphQLFetcher = async (
     method: 'POST',
     headers: {
       ...(token && {
-        Authorization: `Bearer ${token}`,
+        'Authorization-Bearer': token,
       }),
       ...headers,
       'Content-Type': 'application/json',

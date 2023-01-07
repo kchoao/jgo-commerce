@@ -14,7 +14,7 @@ export async function getSearchStaticProps({
   const { categories, brands } = await siteInfoPromise
   return {
     props: {
-      pages,
+      // pages,
       categories,
       brands,
     },

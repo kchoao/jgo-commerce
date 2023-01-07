@@ -3,10 +3,14 @@ import { SaleorConfig } from '../api'
 import { CollectionCountableEdge } from '../../schema'
 import * as query from './queries'
 
-const getCategories = async (config: SaleorConfig): Promise<Category[]> => {
-  const { data } = await config.fetch(query.CollectionMany, {
+const getCategories = async ({
+  fetch,
+  storeChannel,
+}: SaleorConfig): Promise<Category[]> => {
+  const { data } = await fetch(query.CollectionMany, {
     variables: {
       first: 50,
+      channel: storeChannel,
     },
   })
 

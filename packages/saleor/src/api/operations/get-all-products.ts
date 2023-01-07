@@ -27,21 +27,30 @@ export default function getAllProductsOperation({
     preview?: boolean
     featured?: boolean
   } = {}): Promise<ReturnType> {
-    const { fetch, locale } = commerce.getConfig(config)
+    const { fetch, locale, storeChannel } = commerce.getConfig(config)
 
     if (featured) {
-      variables = { ...variables, categoryId: 'Q29sbGVjdGlvbjo0' }
+      variables = {
+        ...variables,
+        channel: storeChannel,
+        // TODO: Change it back to collectionId instead of categoryId
+        categoryId: 'Q29sbGVjdGlvbjo2',
+      }
       query = Query.CollectionOne
     }
-
     const { data }: GraphQLFetcherResult = await fetch(
       query,
-      { variables },
       {
-        ...(locale && {
-          'Accept-Language': locale,
-        }),
+        variables: {
+          ...variables,
+          channel: storeChannel,
+        },
       }
+      // {
+      //   ...(locale && {
+      //     'Accept-Language': locale,
+      //   }),
+      // }
     )
 
     if (featured) {

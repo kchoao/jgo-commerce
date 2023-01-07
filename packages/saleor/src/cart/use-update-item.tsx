@@ -55,9 +55,9 @@ export const handler = {
       ...options,
       variables: {
         checkoutId,
-        lineItems: [
+        lines: [
           {
-            variantId: item.variantId,
+            lineId: itemId,
             quantity: item.quantity,
           },
         ],

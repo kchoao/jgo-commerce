@@ -20,9 +20,14 @@ export default function getAllProductPathsOperation({
     config?: SaleorConfig
     variables?: any
   } = {}): Promise<GetAllProductPathsResult> {
-    config = commerce.getConfig(config)
+    const { fetch, storeChannel } = commerce.getConfig(config)
 
-    const { data }: any = await config.fetch(query, { variables })
+    const { data }: any = await fetch(query, {
+      variables: {
+        ...variables,
+        channel: storeChannel,
+      },
+    })
 
     return {
       products: data?.products?.edges?.map(

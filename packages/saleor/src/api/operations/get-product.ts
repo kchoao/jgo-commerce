@@ -6,6 +6,7 @@ import * as Query from '../../utils/queries'
 
 type Variables = {
   slug: string
+  channel?: string
 }
 
 type ReturnType = {
@@ -18,23 +19,29 @@ export default function getProductOperation({
   async function getProduct({
     query = Query.ProductOneBySlug,
     variables,
-    config: cfg,
+    config,
   }: {
     query?: string
     variables: Variables
+    // variables: any
     config?: Partial<SaleorConfig>
     preview?: boolean
   }): Promise<ReturnType> {
-    const { fetch, locale } = commerce.getConfig(cfg)
+    const { fetch, locale, storeChannel } = commerce.getConfig(config)
 
-    const { data } = await fetch(
+    const { data } = await fetch<any, Variables>(
       query,
-      { variables },
       {
-        ...(locale && {
-          'Accept-Language': locale,
-        }),
+        variables: {
+          ...variables,
+          channel: storeChannel,
+        },
       }
+      // {
+      //   ...(locale && {
+      //     'Accept-Language': locale,
+      //   }),
+      // }
     )
 
     return {

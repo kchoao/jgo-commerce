@@ -9,7 +9,7 @@ export interface ProductPrice {
    * The currency code for the price. This is a 3-letter ISO 4217 code.
    * @example USD
    */
-  currencyCode?: 'USD' | 'EUR' | 'ARS' | 'GBP' | string
+  currencyCode?: 'USD' | 'EUR' | 'ARS' | 'GBP' | 'HKD' | string
   /**
    * The retail price of the product. This can be used to mark a product as on sale, when `retailPrice` is higher than the price a.k.a `value`.
    */

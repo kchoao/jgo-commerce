@@ -5,6 +5,7 @@ import useSearch, { UseSearch } from '@vercel/commerce/product/use-search'
 import { ProductCountableEdge } from '../../schema'
 import { getSearchVariables, normalizeProduct } from '../utils'
 
+import * as Const from '../const'
 import * as query from '../utils/queries'
 import { SearchProductsHook } from '@vercel/commerce/types/product'
 
@@ -15,6 +16,7 @@ export type SearchProductsInput = {
   categoryId?: string
   brandId?: string
   sort?: string
+  channel?: string
 }
 
 export type SearchProductsData = {
@@ -32,11 +34,17 @@ export const handler: SWRHook<SearchProductsHook> = {
     const data = await fetch({
       query: categoryId ? query.CollectionOne : options.query,
       method: options?.method,
-      variables: getSearchVariables(input),
+      variables: {
+        ...getSearchVariables({
+          ...input,
+          channel: Const.API_CHANNEL,
+        }),
+        channel: Const.API_CHANNEL,
+      },
     })
 
     let edges
-
+    // TODO: Check what is this categoryId actually means
     if (categoryId) {
       edges = data?.collection?.products?.edges ?? []
       // FIXME @zaiste, no `vendor` in Saleor

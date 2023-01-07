@@ -1,8 +1,8 @@
 import * as fragment from '../fragments'
 
 export const CheckoutCreate = /* GraphQL */ `
-  mutation CheckoutCreate {
-    checkoutCreate(input: { email: "customer@example.com", lines: [], channel: "default-channel" }) {
+  mutation CheckoutCreate($input: CheckoutCreateInput!) {
+    checkoutCreate(input: $input) {
       errors {
         code
         field

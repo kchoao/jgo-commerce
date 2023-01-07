@@ -23,16 +23,16 @@ export default function getAllPagesOperation({
     preview?: boolean
     query?: string
   } = {}): Promise<GetAllPagesResult> {
-    const { fetch, locale, locales = ['en-US'] } = commerce.getConfig(config)
+    const { fetch, locale, locales } = commerce.getConfig(config)
 
     const { data } = await fetch(
       query,
-      { variables },
-      {
-        ...(locale && {
-          'Accept-Language': locale,
-        }),
-      }
+      { variables }
+      // {
+      //   ...(locale && {
+      //     'Accept-Language': locale,
+      //   }),
+      // }
     )
 
     const pages =

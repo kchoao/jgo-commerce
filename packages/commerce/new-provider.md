@@ -105,23 +105,6 @@ import { handler as useLogout } from './auth/use-logout'
 import { handler as useSignup } from './auth/use-signup'
 
 import fetcher from './fetcher'
-
-export const bigcommerceProvider = {
-  locale: 'en-us',
-  cartCookie: 'bc_cartId',
-  fetcher,
-  cart: { useCart, useAddItem, useUpdateItem, useRemoveItem },
-  wishlist: {
-    useWishlist,
-    useAddItem: useWishlistAddItem,
-    useRemoveItem: useWishlistRemoveItem,
-  },
-  customer: { useCustomer },
-  products: { useSearch },
-  auth: { useLogin, useLogout, useSignup },
-}
-
-export type BigcommerceProvider = typeof bigcommerceProvider
 ```
 
 The provider object, in this case `bigcommerceProvider`, has to match the `Provider` type defined in [packages/commerce](./src/index.tsx).
